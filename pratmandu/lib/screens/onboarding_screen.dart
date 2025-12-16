@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -11,6 +12,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
 
+  void _goToLogin() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const LoginPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +30,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
             children: [
               const SizedBox(height: 40),
 
-              /// LOGO (UPDATED PATH)
+              /// LOGO
               Image.asset("assets/images/logo.png", height: 50),
 
               const SizedBox(height: 30),
 
-              /// PAGE VIEW (SCREEN 1 & 2)
+              /// ONBOARDING PAGES
               Expanded(
                 child: PageView(
                   controller: _pageController,
@@ -38,16 +46,16 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   },
                   children: const [
                     _OnboardingContent(
-                      image: "assets/images/onboarding/onboarding_1.png",
+                      image: "assets/images/onboarding_1.png",
                       title: "Order Your Favorite Food",
                       subtitle:
-                          "Browse through a variety of restaurants and cuisines.",
+                          "Browse through a wide range of restaurants and cuisines.",
                     ),
                     _OnboardingContent(
-                      image: "assets/images/onboarding/onboarding_2.png",
+                      image: "assets/images/onboarding_2.png",
                       title: "Fast & Reliable Delivery",
                       subtitle:
-                          "Get your food delivered quickly and reliably to your door.",
+                          "Get your food delivered quickly and safely to your location.",
                     ),
                   ],
                 ),
@@ -55,7 +63,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
               const SizedBox(height: 20),
 
-              /// DOT INDICATORS
+              /// PAGE INDICATORS
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
@@ -66,15 +74,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
               const SizedBox(height: 25),
 
-              /// BUTTONS
+              /// ACTION BUTTONS
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   /// SKIP
                   TextButton(
-                    onPressed: () {
-                      // TODO: Navigate to Login screen
-                    },
+                    onPressed: _goToLogin,
                     child: const Text(
                       "Skip",
                       style: TextStyle(color: Colors.grey),
@@ -90,7 +96,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           curve: Curves.easeInOut,
                         );
                       } else {
-                        // TODO: Navigate to Login screen
+                        _goToLogin();
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -119,7 +125,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
     );
   }
 
-  /// DOT WIDGET
+  /// DOT INDICATOR
   Widget _dot({required bool isActive}) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -133,7 +139,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 }
 
-/// REUSABLE CONTENT WIDGET
+/// ONBOARDING CONTENT WIDGET
 class _OnboardingContent extends StatelessWidget {
   final String image;
   final String title;
