@@ -22,12 +22,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
             children: [
               const SizedBox(height: 40),
 
-              /// LOGO ICON
-              Image.asset("assets/images/logo_icon.png", height: 50),
+              /// LOGO (UPDATED PATH)
+              Image.asset("assets/images/logo.png", height: 50),
 
               const SizedBox(height: 30),
 
-              /// PAGE VIEW
+              /// PAGE VIEW (SCREEN 1 & 2)
               Expanded(
                 child: PageView(
                   controller: _pageController,
@@ -81,7 +81,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     ),
                   ),
 
-                  /// NEXT
+                  /// NEXT / GET STARTED
                   ElevatedButton(
                     onPressed: () {
                       if (_currentIndex < 1) {
@@ -133,7 +133,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 }
 
-/// REUSABLE ONBOARDING CONTENT
+/// REUSABLE CONTENT WIDGET
 class _OnboardingContent extends StatelessWidget {
   final String image;
   final String title;
