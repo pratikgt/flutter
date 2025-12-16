@@ -35,7 +35,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
               const SizedBox(height: 30),
 
-              /// ONBOARDING PAGES
+              /// PAGE VIEW
               Expanded(
                 child: PageView(
                   controller: _pageController,
@@ -139,7 +139,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 }
 
-/// ONBOARDING CONTENT WIDGET
+/// ONBOARDING CONTENT (FIXED IMAGE SIZE)
 class _OnboardingContent extends StatelessWidget {
   final String image;
   final String title;
@@ -154,11 +154,14 @@ class _OnboardingContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(child: Image.asset(image, fit: BoxFit.contain)),
+        /// IMAGE (FIXED HEIGHT TO AVOID WEB STRETCH)
+        SizedBox(height: 260, child: Image.asset(image, fit: BoxFit.contain)),
 
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
 
+        /// TITLE
         Text(
           title,
           textAlign: TextAlign.center,
@@ -167,6 +170,7 @@ class _OnboardingContent extends StatelessWidget {
 
         const SizedBox(height: 12),
 
+        /// SUBTITLE
         Text(
           subtitle,
           textAlign: TextAlign.center,
