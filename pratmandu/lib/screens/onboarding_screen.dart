@@ -15,6 +15,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
   void _goToLogin() {
     Navigator.pushReplacement(
       context,
+
+      ///where i am
       MaterialPageRoute(builder: (_) => const LoginPage()),
     );
   }
@@ -63,7 +65,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
               const SizedBox(height: 20),
 
-              /// PAGE INDICATORS
+              ////////those small circles image ko tala vaako///////////////
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
@@ -74,11 +76,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
               const SizedBox(height: 25),
 
-              /// ACTION BUTTONS
+              ////////buttons///////////////
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  /// SKIP
+                  //////////skip button//////////
                   TextButton(
                     onPressed: _goToLogin,
                     child: const Text(
@@ -87,7 +89,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     ),
                   ),
 
-                  /// NEXT / GET STARTED
+                  /////////////NEXT///////////
                   ElevatedButton(
                     onPressed: () {
                       if (_currentIndex < 1) {

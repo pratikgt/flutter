@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
             children: [
               const SizedBox(height: 50),
 
-              /////////////// LOGO
+              /////////////// LOGO////////////
               Image.asset("assets/images/logo.png", height: 80),
 
               const SizedBox(height: 20),
@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 40),
 
-              //////////// TITLE
+              //////////// TITLE////////////////
               const Text(
                 "Login",
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
@@ -41,7 +41,7 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              /////////////// EMAIL FIELD
+              /////////////// EMAIL FIELD////////////
               _inputField(
                 hintText: "Email address",
                 icon: Icons.email_outlined,
@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 16),
 
-              // //////////////PASSWORD FIELD
+              // //////////////PASSWORD FIELD////////////
               _inputField(
                 hintText: "Password",
                 icon: Icons.lock_outline,
@@ -59,11 +59,11 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 8),
 
-              ////////////// FORGOT PASSWORD
+              //////////////FORGOT PASSWORD/////////////
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {}, /////////garna baaki//////////
                   child: const Text(
                     "Forgot password?",
                     style: TextStyle(color: Color(0xFFE53935)),
