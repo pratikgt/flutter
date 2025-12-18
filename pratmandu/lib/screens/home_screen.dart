@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              // TODO: Cart page
+              ////////////cartpage ma jane///////////
             },
             icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
           ),
