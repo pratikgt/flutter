@@ -33,12 +33,9 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            /// LOGO
             Image.asset("assets/images/logo.png", height: 90),
 
             const SizedBox(height: 20),
-
-            /// APP NAME
             const Text(
               "PRATMANDU",
               style: TextStyle(
@@ -50,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
             const SizedBox(height: 30),
 
-            /// LOADING INDICATOR
+            ///////////loading indicator////////////
             const CircularProgressIndicator(color: Color(0xFFE53935)),
           ],
         ),
