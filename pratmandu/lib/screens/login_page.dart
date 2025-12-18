@@ -73,7 +73,7 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              ////////////////LOGIN BUTTON
+              ////////////////LOGIN BUTTON//////////////
               SizedBox(
                 width: double.infinity,
                 height: 52,
@@ -96,7 +96,7 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              /////////////// SIGN UP REDIRECT
+              ///////////////SIGN UP////////////////////
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -125,7 +125,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  ///////////// INPUT FIELD WIDGET
+  /////////////INPUT FIELD///////////////
   static Widget _inputField({
     required String hintText,
     required IconData icon,

@@ -134,7 +134,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  //CARDs
+  //Cards
   Widget _restaurantCard({
     required String name,
     required String cuisine,
@@ -163,6 +163,7 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(width: 15),
 
           Expanded(
+            //expanded use gareko kina vane text overflow na hos vanera
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -192,7 +193,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-//CATEGORY ITEM WIDGET
+//items widget
 class _CategoryItem extends StatelessWidget {
   final IconData icon;
   final String label;
