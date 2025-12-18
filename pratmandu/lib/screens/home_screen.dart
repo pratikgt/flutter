@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 10),
 
-            /// SEARCH BAR
+            ///////////search bar///////
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            /// POPULAR RESTAURANTS
+            ///POPULAR RESTAURANTS
             const Text(
               'Popular Restaurants',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -113,7 +113,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
 
-      //NAVIGATION
+      ////////bottom navigation bar//////////
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         selectedItemColor: const Color(0xFFE53935),
@@ -193,7 +193,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-//items widget
+//////////items widget////////////
 class _CategoryItem extends StatelessWidget {
   final IconData icon;
   final String label;
