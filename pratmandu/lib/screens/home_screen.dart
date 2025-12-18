@@ -113,13 +113,13 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
 
-      /// BOTTOM NAVIGATION
+      //NAVIGATION
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         selectedItemColor: const Color(0xFFE53935),
         unselectedItemColor: Colors.grey,
         onTap: (index) {
-          // TODO: Handle navigation
+          //navigationlogic garna baaki
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -134,7 +134,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  /// RESTAURANT CARD
+  //CARDs
   Widget _restaurantCard({
     required String name,
     required String cuisine,
@@ -149,7 +149,7 @@ class HomeScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          /// IMAGE PLACEHOLDER
+          //images
           Container(
             height: 60,
             width: 60,
@@ -162,7 +162,6 @@ class HomeScreen extends StatelessWidget {
 
           const SizedBox(width: 15),
 
-          /// DETAILS
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,7 +178,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
-          /// RATING
+          //RATING
           Row(
             children: [
               const Icon(Icons.star, color: Colors.orange, size: 18),
@@ -193,7 +192,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-/// CATEGORY ITEM WIDGET
+//CATEGORY ITEM WIDGET
 class _CategoryItem extends StatelessWidget {
   final IconData icon;
   final String label;
