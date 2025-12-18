@@ -41,7 +41,7 @@ class SignupScreen extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              /// FULL NAME
+              ///////textfields//////////
               _inputField(
                 hintText: 'Full Name',
                 icon: Icons.person_outline,
@@ -50,7 +50,6 @@ class SignupScreen extends StatelessWidget {
 
               const SizedBox(height: 16),
 
-              /// EMAIL
               _inputField(
                 hintText: 'Email Address',
                 icon: Icons.email_outlined,
@@ -59,7 +58,6 @@ class SignupScreen extends StatelessWidget {
 
               const SizedBox(height: 16),
 
-              /// PASSWORD
               _inputField(
                 hintText: 'Password',
                 icon: Icons.lock_outline,
@@ -68,7 +66,6 @@ class SignupScreen extends StatelessWidget {
 
               const SizedBox(height: 16),
 
-              /// CONFIRM PASSWORD
               _inputField(
                 hintText: 'Confirm Password',
                 icon: Icons.lock_outline,
@@ -77,13 +74,13 @@ class SignupScreen extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              /// SIGN UP BUTTON
+              /////////////////signup button//////////////
               SizedBox(
                 width: double.infinity,
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO: Signup logic
+                    /////////signup logic garna baaki//////////
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE53935),
@@ -97,7 +94,7 @@ class SignupScreen extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              /// LOGIN REDIRECT
+              /////////////login ma feri jaane//////////
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

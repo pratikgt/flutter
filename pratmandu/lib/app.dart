@@ -5,7 +5,7 @@ import 'package:pratmandu/screens/splash_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
-
+  /////globallly theme set gareko ////////
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
