@@ -22,15 +22,6 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: 20),
 
               /// APP NAME
-              const Text(
-                'PRATMANDU',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFFE53935),
-                ),
-              ),
-
               const SizedBox(height: 40),
 
               /// TITLE
