@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pratmandu/screens/home_screen.dart';
+import 'package:pratmandu/screens/signup_screen.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -76,7 +78,12 @@ class LoginPage extends StatelessWidget {
                 width: double.infinity,
                 height: 52,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const HomeScreen()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE53935),
                     shape: RoundedRectangleBorder(
@@ -95,7 +102,12 @@ class LoginPage extends StatelessWidget {
                 children: [
                   const Text("Don’t have an account? "),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const SignupScreen()),
+                      );
+                    },
                     child: const Text(
                       "Sign up",
                       style: TextStyle(
