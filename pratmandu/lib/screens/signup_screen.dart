@@ -46,6 +46,8 @@ class SignupScreen extends StatelessWidget {
                 hintText: 'Full Name',
                 icon: Icons.person_outline,
                 obscureText: false,
+
+                ///name ko lagi obscureText false gareko
               ),
 
               const SizedBox(height: 16),
