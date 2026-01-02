@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/core/services/storage/user_session_service.dart';
-import 'package:lost_n_found/features/category/presentation/view_model/category_viewmodel.dart';
-import 'package:lost_n_found/features/item/domain/entities/item_entity.dart';
-import 'package:lost_n_found/features/item/presentation/state/item_state.dart';
-import 'package:lost_n_found/features/item/presentation/view_model/item_viewmodel.dart';
+import 'package:pratmandu/core/services/storage/user_session_service.dart';
+import 'package:pratmandu/features/category/presentation/view_model/category_viewmodel.dart';
+import 'package:pratmandu/features/item/domain/entities/item_entity.dart';
+import 'package:pratmandu/features/item/presentation/state/item_state.dart';
+import 'package:pratmandu/features/item/presentation/view_model/item_viewmodel.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/theme_extensions.dart';
 
@@ -414,8 +414,8 @@ class _MyItemCard extends StatelessWidget {
                           gradient: isResolved
                               ? null
                               : (isLost
-                                    ? AppColors.lostGradient
-                                    : AppColors.foundGradient),
+                                  ? AppColors.lostGradient
+                                  : AppColors.foundGradient),
                           color: isResolved ? AppColors.claimedColor : null,
                           borderRadius: BorderRadius.circular(14),
                         ),

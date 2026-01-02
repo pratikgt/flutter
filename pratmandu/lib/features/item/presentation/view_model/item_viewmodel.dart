@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/features/item/domain/entities/item_entity.dart';
-import 'package:lost_n_found/features/item/domain/usecases/create_item_usecase.dart';
-import 'package:lost_n_found/features/item/domain/usecases/delete_item_usecase.dart';
-import 'package:lost_n_found/features/item/domain/usecases/get_all_items_usecase.dart';
-import 'package:lost_n_found/features/item/domain/usecases/get_item_by_id_usecase.dart';
-import 'package:lost_n_found/features/item/domain/usecases/get_items_by_user_usecase.dart';
-import 'package:lost_n_found/features/item/domain/usecases/update_item_usecase.dart';
-import 'package:lost_n_found/features/item/presentation/state/item_state.dart';
+import 'package:pratmandu/features/item/domain/entities/item_entity.dart';
+import 'package:pratmandu/features/item/domain/usecases/create_item_usecase.dart';
+import 'package:pratmandu/features/item/domain/usecases/delete_item_usecase.dart';
+import 'package:pratmandu/features/item/domain/usecases/get_all_items_usecase.dart';
+import 'package:pratmandu/features/item/domain/usecases/get_item_by_id_usecase.dart';
+import 'package:pratmandu/features/item/domain/usecases/get_items_by_user_usecase.dart';
+import 'package:pratmandu/features/item/domain/usecases/update_item_usecase.dart';
+import 'package:pratmandu/features/item/presentation/state/item_state.dart';
 
 final itemViewModelProvider = NotifierProvider<ItemViewModel, ItemState>(
   ItemViewModel.new,
@@ -42,12 +42,10 @@ class ItemViewModel extends Notifier<ItemState> {
         errorMessage: failure.message,
       ),
       (items) {
-        final lostItems = items
-            .where((item) => item.type == ItemType.lost)
-            .toList();
-        final foundItems = items
-            .where((item) => item.type == ItemType.found)
-            .toList();
+        final lostItems =
+            items.where((item) => item.type == ItemType.lost).toList();
+        final foundItems =
+            items.where((item) => item.type == ItemType.found).toList();
         state = state.copyWith(
           status: ItemStatus.loaded,
           items: items,
@@ -86,12 +84,10 @@ class ItemViewModel extends Notifier<ItemState> {
         errorMessage: failure.message,
       ),
       (items) {
-        final myLostItems = items
-            .where((item) => item.type == ItemType.lost)
-            .toList();
-        final myFoundItems = items
-            .where((item) => item.type == ItemType.found)
-            .toList();
+        final myLostItems =
+            items.where((item) => item.type == ItemType.lost).toList();
+        final myFoundItems =
+            items.where((item) => item.type == ItemType.found).toList();
         state = state.copyWith(
           status: ItemStatus.loaded,
           myLostItems: myLostItems,

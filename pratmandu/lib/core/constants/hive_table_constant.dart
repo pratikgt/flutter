@@ -3,7 +3,7 @@ class HiveTableConstant {
   HiveTableConstant._();
 
   // Database name
-  static const String dbName = "lost_n_found_db";
+  static const String dbName = "pratmandu_db";
 
   // Tables -> Box : Index
   static const int batchTypeId = 0;

@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/core/error/failures.dart';
-import 'package:lost_n_found/features/batch/data/datasources/batch_datasource.dart';
-import 'package:lost_n_found/features/batch/data/datasources/local/batch_local_datasource.dart';
-import 'package:lost_n_found/features/batch/data/models/batch_hive_model.dart';
-import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
-import 'package:lost_n_found/features/batch/domain/repositories/batch_repository.dart';
+import 'package:pratmandu/core/error/failures.dart';
+import 'package:pratmandu/features/batch/data/datasources/batch_datasource.dart';
+import 'package:pratmandu/features/batch/data/datasources/local/batch_local_datasource.dart';
+import 'package:pratmandu/features/batch/data/models/batch_hive_model.dart';
+import 'package:pratmandu/features/batch/domain/entities/batch_entity.dart';
+import 'package:pratmandu/features/batch/domain/repositories/batch_repository.dart';
 
 // Create provider
 final batchRepositoryProvider = Provider<IBatchRepository>((ref) {
@@ -17,7 +17,7 @@ class BatchRepository implements IBatchRepository {
   final IBatchDataSource _batchDataSource;
 
   BatchRepository({required IBatchDataSource batchDatasource})
-    : _batchDataSource = batchDatasource;
+      : _batchDataSource = batchDatasource;
 
   @override
   Future<Either<Failure, bool>> createBatch(BatchEntity batch) async {

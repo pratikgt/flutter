@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/core/services/hive/hive_service.dart';
-import 'package:lost_n_found/features/item/data/datasources/item_datasource.dart';
-import 'package:lost_n_found/features/item/data/models/item_hive_model.dart';
+import 'package:pratmandu/core/services/hive/hive_service.dart';
+import 'package:pratmandu/features/item/data/datasources/item_datasource.dart';
+import 'package:pratmandu/features/item/data/models/item_hive_model.dart';
 
 final itemLocalDatasourceProvider = Provider<ItemLocalDatasource>((ref) {
   final hiveService = ref.read(hiveServiceProvider);

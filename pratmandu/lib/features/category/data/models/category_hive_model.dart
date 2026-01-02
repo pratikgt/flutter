@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:lost_n_found/core/constants/hive_table_constant.dart';
-import 'package:lost_n_found/features/category/domain/entities/category_entity.dart';
+import 'package:pratmandu/core/constants/hive_table_constant.dart';
+import 'package:pratmandu/features/category/domain/entities/category_entity.dart';
 import 'package:uuid/uuid.dart';
 
 part 'category_hive_model.g.dart';

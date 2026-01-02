@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/features/auth/presentation/state/auth_state.dart';
-import 'package:lost_n_found/features/auth/presentation/view_model/auth_viewmodel.dart';
-import 'package:lost_n_found/features/batch/presentation/state/batch_state.dart';
-import 'package:lost_n_found/features/batch/presentation/view_model/batch_viewmodel.dart';
+import 'package:pratmandu/features/auth/presentation/state/auth_state.dart';
+import 'package:pratmandu/features/auth/presentation/view_model/auth_viewmodel.dart';
+import 'package:pratmandu/features/batch/presentation/state/batch_state.dart';
+import 'package:pratmandu/features/batch/presentation/view_model/batch_viewmodel.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/theme_extensions.dart';
 import '../../../../core/widgets/gradient_button.dart';
@@ -59,9 +59,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
     }
 
     if (_formKey.currentState!.validate()) {
-      await ref
-          .read(authViewModelProvider.notifier)
-          .register(
+      await ref.read(authViewModelProvider.notifier).register(
             fullName: _nameController.text.trim(),
             email: _emailController.text.trim(),
             username: _emailController.text.trim().split('@').first,

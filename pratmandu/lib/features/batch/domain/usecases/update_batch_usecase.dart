@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/core/error/failures.dart';
-import 'package:lost_n_found/core/usecases/app_usecases.dart';
-import 'package:lost_n_found/features/batch/data/repositories/batch_repository.dart';
-import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
-import 'package:lost_n_found/features/batch/domain/repositories/batch_repository.dart';
+import 'package:pratmandu/core/error/failures.dart';
+import 'package:pratmandu/core/usecases/app_usecases.dart';
+import 'package:pratmandu/features/batch/data/repositories/batch_repository.dart';
+import 'package:pratmandu/features/batch/domain/entities/batch_entity.dart';
+import 'package:pratmandu/features/batch/domain/repositories/batch_repository.dart';
 
 class UpdateBatchParams extends Equatable {
   final String batchId;
@@ -32,7 +32,7 @@ class UpdateBatchUsecase implements UsecaseWithParms<bool, UpdateBatchParams> {
   final IBatchRepository _batchRepository;
 
   UpdateBatchUsecase({required IBatchRepository batchRepository})
-    : _batchRepository = batchRepository;
+      : _batchRepository = batchRepository;
 
   @override
   Future<Either<Failure, bool>> call(UpdateBatchParams params) {

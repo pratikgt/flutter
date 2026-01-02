@@ -3,8 +3,8 @@
 
 // Adapter
 import 'package:hive/hive.dart';
-import 'package:lost_n_found/core/constants/hive_table_constant.dart';
-import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
+import 'package:pratmandu/core/constants/hive_table_constant.dart';
+import 'package:pratmandu/features/batch/domain/entities/batch_entity.dart';
 import 'package:uuid/uuid.dart';
 
 part 'batch_hive_model.g.dart';
@@ -19,8 +19,8 @@ class BatchHiveModel extends HiveObject {
   final String? status;
 
   BatchHiveModel({String? batchId, required this.batchName, String? status})
-    : batchId = batchId ?? Uuid().v4(),
-      status = status ?? 'active';
+      : batchId = batchId ?? Uuid().v4(),
+        status = status ?? 'active';
 
   // TOENtity
   BatchEntity toEntity() {

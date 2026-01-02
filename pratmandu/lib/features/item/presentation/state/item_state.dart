@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lost_n_found/features/item/domain/entities/item_entity.dart';
+import 'package:pratmandu/features/item/domain/entities/item_entity.dart';
 
 enum ItemStatus { initial, loading, loaded, error, created, updated, deleted }
 
@@ -47,5 +47,14 @@ class ItemState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [status, items, lostItems, foundItems, myLostItems, myFoundItems, selectedItem, errorMessage];
+  List<Object?> get props => [
+        status,
+        items,
+        lostItems,
+        foundItems,
+        myLostItems,
+        myFoundItems,
+        selectedItem,
+        errorMessage
+      ];
 }

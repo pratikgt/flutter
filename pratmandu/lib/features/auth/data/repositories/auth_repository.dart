@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/core/error/failures.dart';
-import 'package:lost_n_found/features/auth/data/datasources/auth_datasource.dart';
-import 'package:lost_n_found/features/auth/data/datasources/local/auth_local_datasource.dart';
-import 'package:lost_n_found/features/auth/data/models/auth_hive_model.dart';
-import 'package:lost_n_found/features/auth/domain/entities/auth_entity.dart';
-import 'package:lost_n_found/features/auth/domain/repositories/auth_repository.dart';
+import 'package:pratmandu/core/error/failures.dart';
+import 'package:pratmandu/features/auth/data/datasources/auth_datasource.dart';
+import 'package:pratmandu/features/auth/data/datasources/local/auth_local_datasource.dart';
+import 'package:pratmandu/features/auth/data/models/auth_hive_model.dart';
+import 'package:pratmandu/features/auth/domain/entities/auth_entity.dart';
+import 'package:pratmandu/features/auth/domain/repositories/auth_repository.dart';
 
 // Create provider
 final authRepositoryProvider = Provider<IAuthRepository>((ref) {
@@ -17,7 +17,7 @@ class AuthRepository implements IAuthRepository {
   final IAuthDataSource _authDataSource;
 
   AuthRepository({required IAuthDataSource authDatasource})
-    : _authDataSource = authDatasource;
+      : _authDataSource = authDatasource;
 
   @override
   Future<Either<Failure, bool>> register(AuthEntity user) async {

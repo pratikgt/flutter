@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/features/category/domain/usecases/create_category_usecase.dart';
-import 'package:lost_n_found/features/category/domain/usecases/delete_category_usecase.dart';
-import 'package:lost_n_found/features/category/domain/usecases/get_all_categories_usecase.dart';
-import 'package:lost_n_found/features/category/domain/usecases/get_category_by_id_usecase.dart';
-import 'package:lost_n_found/features/category/domain/usecases/update_category_usecase.dart';
-import 'package:lost_n_found/features/category/presentation/state/category_state.dart';
+import 'package:pratmandu/features/category/domain/usecases/create_category_usecase.dart';
+import 'package:pratmandu/features/category/domain/usecases/delete_category_usecase.dart';
+import 'package:pratmandu/features/category/domain/usecases/get_all_categories_usecase.dart';
+import 'package:pratmandu/features/category/domain/usecases/get_category_by_id_usecase.dart';
+import 'package:pratmandu/features/category/domain/usecases/update_category_usecase.dart';
+import 'package:pratmandu/features/category/presentation/state/category_state.dart';
 
 final categoryViewModelProvider =
     NotifierProvider<CategoryViewModel, CategoryState>(CategoryViewModel.new);

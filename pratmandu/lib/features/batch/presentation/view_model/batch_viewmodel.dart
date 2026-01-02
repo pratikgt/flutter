@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/features/batch/domain/usecases/create_batch_usecase.dart';
-import 'package:lost_n_found/features/batch/domain/usecases/delete_batch_usecase.dart';
-import 'package:lost_n_found/features/batch/domain/usecases/get_all_batch_usecase.dart';
-import 'package:lost_n_found/features/batch/domain/usecases/get_batch_byid_usecase.dart';
-import 'package:lost_n_found/features/batch/domain/usecases/update_batch_usecase.dart';
-import 'package:lost_n_found/features/batch/presentation/state/batch_state.dart';
+import 'package:pratmandu/features/batch/domain/usecases/create_batch_usecase.dart';
+import 'package:pratmandu/features/batch/domain/usecases/delete_batch_usecase.dart';
+import 'package:pratmandu/features/batch/domain/usecases/get_all_batch_usecase.dart';
+import 'package:pratmandu/features/batch/domain/usecases/get_batch_byid_usecase.dart';
+import 'package:pratmandu/features/batch/domain/usecases/update_batch_usecase.dart';
+import 'package:pratmandu/features/batch/presentation/state/batch_state.dart';
 
 final batchViewModelProvider = NotifierProvider<BatchViewModel, BatchState>(
   BatchViewModel.new,

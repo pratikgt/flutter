@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lost_n_found/core/services/hive/hive_service.dart';
-import 'package:lost_n_found/features/category/data/datasources/category_datasource.dart';
-import 'package:lost_n_found/features/category/data/models/category_hive_model.dart';
+import 'package:pratmandu/core/services/hive/hive_service.dart';
+import 'package:pratmandu/features/category/data/datasources/category_datasource.dart';
+import 'package:pratmandu/features/category/data/models/category_hive_model.dart';
 
 final categoryLocalDatasourceProvider =
     Provider<CategoryLocalDatasource>((ref) {

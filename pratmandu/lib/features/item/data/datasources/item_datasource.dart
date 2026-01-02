@@ -1,4 +1,4 @@
-import 'package:lost_n_found/features/item/data/models/item_hive_model.dart';
+import 'package:pratmandu/features/item/data/models/item_hive_model.dart';
 
 abstract interface class IItemDataSource {
   Future<List<ItemHiveModel>> getAllItems();
