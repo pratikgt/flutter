@@ -71,8 +71,8 @@ class _SplashPageState extends ConsumerState<SplashPage>
 
     _slideAnimation =
         Tween<Offset>(begin: const Offset(0, 0.3), end: Offset.zero).animate(
-          CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
-        );
+      CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
+    );
   }
 
   void _startAnimations() async {
