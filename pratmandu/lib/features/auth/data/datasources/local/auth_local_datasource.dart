@@ -1,121 +1,55 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pratmandu/core/services/hive/hive_service.dart';
-import 'package:pratmandu/core/services/storage/user_session_service.dart';
-import 'package:pratmandu/features/auth/data/datasources/auth_datasource.dart';
-import 'package:pratmandu/features/auth/data/models/auth_hive_model.dart';
+import 'package:hive/hive.dart';
 
-// Create provider
-final authLocalDatasourceProvider = Provider<AuthLocalDatasource>((ref) {
-  final hiveService = ref.read(hiveServiceProvider);
-  final userSessionService = ref.read(userSessionServiceProvider);
-  return AuthLocalDatasource(
-    hiveService: hiveService,
-    userSessionService: userSessionService,
-  );
+import '../../models/auth_hive_model.dart';
+import '../auth_datasource.dart';
+
+final authLocalDatasourceProvider = Provider<IAuthDataSource>((ref) {
+  return AuthLocalDatasource();
 });
 
 class AuthLocalDatasource implements IAuthDataSource {
-  final HiveService _hiveService;
-  final UserSessionService _userSessionService;
-
-  AuthLocalDatasource({
-    required HiveService hiveService,
-    required UserSessionService userSessionService,
-  })  : _hiveService = hiveService,
-        _userSessionService = userSessionService;
+  static const String usersBoxName = 'usersBox';
+  static const String currentUserKey = 'currentUser';
 
   @override
-  Future<AuthHiveModel> register(AuthHiveModel user) async {
-    return await _hiveService.register(user);
+  Future<void> register(AuthHiveModel user) async {
+    final box = await Hive.openBox<AuthHiveModel>(usersBoxName);
+    await box.put(user.email.toLowerCase(), user);
+    await box.put(currentUserKey, user);
   }
 
   @override
-  Future<AuthHiveModel?> login(String email, String password) async {
-    try {
-      final user = _hiveService.login(email, password);
-      if (user != null && user.authId != null) {
-        // Save user session to SharedPreferences : Pachi app restart vayo vani pani user logged in rahos
-        await _userSessionService.saveUserSession(
-          userId: user.authId!,
-          email: user.email,
-          fullName: user.fullName,
-          username: user.username,
-          phoneNumber: user.phoneNumber,
-          batchId: user.batchId,
-          profilePicture: user.profilePicture,
-        );
-      }
-      return user;
-    } catch (e) {
-      return null;
-    }
+  Future<AuthHiveModel?> login({
+    required String email,
+    required String password,
+  }) async {
+    final box = await Hive.openBox<AuthHiveModel>(usersBoxName);
+    final user = box.get(email.toLowerCase());
+
+    if (user == null) return null;
+    if (user.password != password) return null;
+
+    await box.put(currentUserKey, user);
+    return user;
   }
 
   @override
   Future<AuthHiveModel?> getCurrentUser() async {
-    try {
-      // Check if user is logged in
-      if (!_userSessionService.isLoggedIn()) {
-        return null;
-      }
-
-      // Get user ID from session
-      final userId = _userSessionService.getCurrentUserId();
-      if (userId == null) {
-        return null;
-      }
-
-      // Fetch user from Hive database
-      return _hiveService.getUserById(userId);
-    } catch (e) {
-      return null;
-    }
+    final box = await Hive.openBox<AuthHiveModel>(usersBoxName);
+    return box.get(currentUserKey);
   }
 
   @override
   Future<bool> logout() async {
-    try {
-      await _userSessionService.clearSession();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  @override
-  Future<AuthHiveModel?> getUserById(String authId) async {
-    try {
-      return _hiveService.getUserById(authId);
-    } catch (e) {
-      return null;
-    }
+    final box = await Hive.openBox<AuthHiveModel>(usersBoxName);
+    await box.delete(currentUserKey);
+    return true;
   }
 
   @override
   Future<AuthHiveModel?> getUserByEmail(String email) async {
-    try {
-      return _hiveService.getUserByEmail(email);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  @override
-  Future<bool> updateUser(AuthHiveModel user) async {
-    try {
-      return await _hiveService.updateUser(user);
-    } catch (e) {
-      return false;
-    }
-  }
-
-  @override
-  Future<bool> deleteUser(String authId) async {
-    try {
-      await _hiveService.deleteUser(authId);
-      return true;
-    } catch (e) {
-      return false;
-    }
+    final box = await Hive.openBox<AuthHiveModel>(usersBoxName);
+    return box.get(email.toLowerCase());
   }
 }

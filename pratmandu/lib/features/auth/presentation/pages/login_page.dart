@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:pratmandu/features/auth/data/repositories/auth_repository.dart';
+import 'package:pratmandu/features/auth/presentation/pages/signup_page.dart';
 import 'package:pratmandu/screens/home_screen.dart';
-import 'package:pratmandu/screens/signup_screen.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
