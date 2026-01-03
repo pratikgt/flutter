@@ -1,191 +1,186 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entities/onboarding_item.dart';
-import '../widgets/onboarding_content.dart';
-import '../widgets/page_indicator.dart';
-import '../../../../core/widgets/gradient_button.dart';
-import '../../../../app/theme/app_colors.dart';
-import '../../../../app/theme/theme_extensions.dart';
-import '../../../../app/routes/app_routes.dart';
-import '../../../auth/presentation/pages/login_page.dart';
+import 'package:pratmandu/features/auth/presentation/pages/login_page.dart';
 
-class OnboardingPage extends ConsumerStatefulWidget {
+class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
 
   @override
-  ConsumerState<OnboardingPage> createState() => _OnboardingPageState();
+  State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingPageState extends ConsumerState<OnboardingPage>
-    with SingleTickerProviderStateMixin {
+class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
-  int _currentPage = 0;
-  late AnimationController _animationController;
+  int _currentIndex = 0;
 
-  final List<OnboardingItem> _onboardingItems = const [
-    OnboardingItem(
-      title: 'Report Lost Items',
-      description:
-          'Quickly report lost items with photos and detailed descriptions. Our smart matching helps reunite you with your belongings.',
-      icon: Icons.travel_explore_rounded,
-      color: AppColors.onboarding1Primary,
-      gradientColors: [AppColors.onboarding1Primary, AppColors.onboarding1Secondary],
-    ),
-    OnboardingItem(
-      title: 'Find & Discover',
-      description:
-          'Browse through found items in real-time. Advanced filters help you find exactly what you\'re looking for.',
-      icon: Icons.location_searching_rounded,
-      color: AppColors.onboarding2Primary,
-      gradientColors: [AppColors.onboarding2Primary, AppColors.onboarding2Secondary],
-    ),
-    OnboardingItem(
-      title: 'Connect Instantly',
-      description:
-          'Chat directly with finders or owners. Get instant notifications and recover your items quickly and securely.',
-      icon: Icons.forum_rounded,
-      color: AppColors.onboarding3Primary,
-      gradientColors: [AppColors.onboarding3Primary, AppColors.onboarding3Secondary],
-    ),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
+  void _goToLogin() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const LoginPage()),
     );
-    _animationController.forward();
-  }
-
-  void _onPageChanged(int index) {
-    setState(() {
-      _currentPage = index;
-    });
-    _animationController.reset();
-    _animationController.forward();
-  }
-
-  void _nextPage() {
-    if (_currentPage < _onboardingItems.length - 1) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOutCubic,
-      );
-    } else {
-      _navigateToLogin();
-    }
-  }
-
-  void _skipOnboarding() {
-    _navigateToLogin();
-  }
-
-  void _navigateToLogin() {
-    AppRoutes.pushReplacement(context, const LoginPage());
   }
 
   @override
   void dispose() {
     _pageController.dispose();
-    _animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: AppColors.backgroundGradient,
-        ),
-        child: SafeArea(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
-              // Top Bar with Skip Button
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: _skipOnboarding,
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 12,
-                        ),
-                        backgroundColor: AppColors.white30,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: Text(
-                        'Skip',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: context.textPrimary,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              const SizedBox(height: 40),
 
-              // PageView
+              // LOGO
+              Image.asset("assets/images/logo.png", height: 50),
+
+              const SizedBox(height: 30),
+
+              // PAGE VIEW
               Expanded(
-                child: PageView.builder(
+                child: PageView(
                   controller: _pageController,
-                  onPageChanged: _onPageChanged,
-                  itemCount: _onboardingItems.length,
-                  itemBuilder: (context, index) {
-                    return FadeTransition(
-                      opacity: _animationController,
-                      child: OnboardingContent(
-                        item: _onboardingItems[index],
-                      ),
-                    );
+                  onPageChanged: (index) {
+                    setState(() => _currentIndex = index);
                   },
-                ),
-              ),
-
-              // Bottom Section
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  children: [
-                    // Page Indicator
-                    PageIndicator(
-                      itemCount: _onboardingItems.length,
-                      currentPage: _currentPage,
-                      activeColor: _onboardingItems[_currentPage].color,
+                  children: const [
+                    _OnboardingContent(
+                      image: "assets/images/onboarding_1.png",
+                      title: "Order Your Favorite Food",
+                      subtitle:
+                          "Browse through a wide range of restaurants and cuisines.",
                     ),
-                    const SizedBox(height: 32),
-
-                    // Next/Get Started Button
-                    GradientButton(
-                      text: _currentPage == _onboardingItems.length - 1
-                          ? 'Get Started'
-                          : 'Next',
-                      onPressed: _nextPage,
-                      gradient: LinearGradient(
-                        colors: _onboardingItems[_currentPage].gradientColors,
-                      ),
-                      icon: Icon(
-                        Icons.arrow_forward_rounded,
-                        color: Colors.white,
-                        size: 20,
-                      ),
+                    _OnboardingContent(
+                      image: "assets/images/onboarding_2.png",
+                      title: "Fast & Reliable Delivery",
+                      subtitle:
+                          "Get your food delivered quickly and safely to your location.",
                     ),
                   ],
                 ),
               ),
+
+              const SizedBox(height: 20),
+
+              // DOT INDICATORS
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  2,
+                  (index) => AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    height: 8,
+                    width: _currentIndex == index ? 18 : 8,
+                    decoration: BoxDecoration(
+                      color: _currentIndex == index
+                          ? const Color(0xFFE53935)
+                          : Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              // ACTION BUTTONS
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // SKIP
+                  TextButton(
+                    onPressed: _goToLogin,
+                    child: const Text(
+                      "Skip",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+
+                  // NEXT / GET STARTED
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_currentIndex < 1) {
+                        _pageController.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      } else {
+                        _goToLogin();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFE53935),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 12,
+                      ),
+                    ),
+                    child: Text(
+                      _currentIndex == 1 ? "Get Started" : "Next",
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 20),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+// ONBOARDING CONTENT
+class _OnboardingContent extends StatelessWidget {
+  final String image;
+  final String title;
+  final String subtitle;
+
+  const _OnboardingContent({
+    required this.image,
+    required this.title,
+    required this.subtitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 260,
+          child: Image.asset(image, fit: BoxFit.contain),
+        ),
+        const SizedBox(height: 30),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          subtitle,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 15,
+            color: Colors.grey,
+          ),
+        ),
+      ],
     );
   }
 }
