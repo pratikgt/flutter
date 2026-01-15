@@ -1,8 +1,9 @@
 import 'package:hive/hive.dart';
+import 'package:pratmandu/core/constants/hive_table_constant.dart';
 
 part 'auth_hive_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: HiveTableConstant.userTypeId)
 class AuthHiveModel extends HiveObject {
   @HiveField(0)
   final String email;

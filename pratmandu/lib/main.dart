@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:pratmandu/app.dart';
+import 'package:pratmandu/core/constants/hive_table_constant.dart';
+import 'package:pratmandu/features/auth/data/models/auth_hive_model.dart';
 
-void main() {
-  runApp(App());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Hive
+  await Hive.initFlutter();
+
+  // Register Hive adapters
+  if (!Hive.isAdapterRegistered(HiveTableConstant.userTypeId)) {
+    Hive.registerAdapter(AuthHiveModelAdapter());
+  }
+
+  // Open required boxes
+  await Hive.openBox<AuthHiveModel>(HiveTableConstant.userTable);
+
+  runApp(const ProviderScope(child: App()));
 }

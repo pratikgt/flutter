@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
+import 'package:pratmandu/core/constants/hive_table_constant.dart';
 
 import '../../models/auth_hive_model.dart';
 import '../auth_datasource.dart';
@@ -9,7 +10,8 @@ final authLocalDatasourceProvider = Provider<IAuthDataSource>((ref) {
 });
 
 class AuthLocalDatasource implements IAuthDataSource {
-  static const String usersBoxName = 'usersBox';
+  static const String usersBoxName = HiveTableConstant.userTable;
+
   static const String currentUserKey = 'currentUser';
 
   @override

@@ -11,12 +11,12 @@ abstract class Failure extends Equatable {
 
 class LocalDatabaseFailure extends Failure {
   const LocalDatabaseFailure({String message = "Local Database Failure"})
-    : super(message);
+      : super(message);
 }
 
 class ApiFailure extends Failure {
   final int? statusCode;
 
   const ApiFailure({String message = "API Failure", this.statusCode})
-    : super(message);
+      : super(message);
 }

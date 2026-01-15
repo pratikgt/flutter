@@ -1,23 +1,26 @@
 class HiveTableConstant {
-  // Private constructor
-  HiveTableConstant._();
+  // ================= AUTH / USER =================
+  static const String userTable = 'usersBox';
+  static const int userTypeId = 1;
 
-  // Database name
-  static const String dbName = "pratmandu_db";
-
-  // Tables -> Box : Index
-  static const int batchTypeId = 0;
-  static const String batchTable = "batch_table";
-
-  static const int studentTypeId = 1;
-  static const String studentTable = "student_table";
-
-  static const int iteTypeId = 2;
-  static const String itemTable = "item_table";
-
-  static const int categoryTypeId = 3;
-  static const String categoryTable = "category_table";
-
-  static const int commentTypeId = 4;
-  static const String commentTable = "comment_table";
+  // ================= OTHER (future use) =================
+  // Add more tables later when needed
 }
+
+
+  // Restaurant
+  // static const int restaurantTypeId = 2;
+  // static const String restaurantTable = "restaurant_table";
+
+  // Food Item
+  // static const int foodTypeId = 3;
+  // static const String foodTable = "food_table";
+
+  // Cart Item
+  // static const int cartTypeId = 4;
+  // static const String cartTable = "cart_table";
+
+  // Order
+  // static const int orderTypeId = 5;
+  // static const String orderTable = "order_table";
+
