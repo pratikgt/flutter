@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:pratmandu/features/auth/data/repositories/auth_repository.dart';
 import 'package:pratmandu/features/auth/presentation/pages/signup_page.dart';
+import 'package:pratmandu/features/auth/presentation/providers/auth_provider.dart';
 import 'package:pratmandu/screens/home_screen.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -43,17 +42,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
     setState(() => _isLoading = false);
 
-    result.fold(
-      (failure) {
-        _showSnack(failure.message);
-      },
-      (user) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const HomeScreen()),
-        );
-      },
-    );
+    if (result == null) {
+      _showSnack("Invalid email or password");
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+      );
+    }
   }
 
   void _showSnack(String message) {
@@ -170,7 +166,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const SignupScreen(),
+                          builder: (_) => const SignupPage(),
                         ),
                       );
                     },
