@@ -1,7 +1,7 @@
 class HiveTableConstant {
   // ================= AUTH / USER =================
   static const String userTable = 'usersBox';
-  static const int userTypeId = 1;
+  static const int userTypeId = 0;
 
   // ================= OTHER (future use) =================
   // Add more tables later when needed
