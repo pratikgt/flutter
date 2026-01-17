@@ -1,38 +1,33 @@
-// import 'package:equatable/equatable.dart';
-// import 'package:pratmandu/features/auth/domain/entities/auth_entity.dart';
+class AuthState {
+  final bool isLoading;
+  final bool isLoggedIn;
+  final String? error;
 
-// enum AuthStatus {
-//   initial,
-//   loading,
-//   authenticated,
-//   unauthenticated,
-//   registered,
-//   error,
-// }
+  const AuthState({
+    required this.isLoading,
+    required this.isLoggedIn,
+    this.error,
+  });
 
-// class AuthState extends Equatable {
-//   final AuthStatus status;
-//   final AuthEntity? user;
-//   final String? errorMessage;
+  /// Initial state (app just opened)
+  factory AuthState.initial() {
+    return const AuthState(
+      isLoading: false,
+      isLoggedIn: false,
+      error: null,
+    );
+  }
 
-//   const AuthState({
-//     this.status = AuthStatus.initial,
-//     this.user,
-//     this.errorMessage,
-//   });
-
-//   AuthState copyWith({
-//     AuthStatus? status,
-//     AuthEntity? user,
-//     String? errorMessage,
-//   }) {
-//     return AuthState(
-//       status: status ?? this.status,
-//       user: user ?? this.user,
-//       errorMessage: errorMessage ?? this.errorMessage,
-//     );
-//   }
-
-//   @override
-//   List<Object?> get props => [status, user, errorMessage];
-// }
+  /// Helper to create a modified copy
+  AuthState copyWith({
+    bool? isLoading,
+    bool? isLoggedIn,
+    String? error,
+  }) {
+    return AuthState(
+      isLoading: isLoading ?? this.isLoading,
+      isLoggedIn: isLoggedIn ?? this.isLoggedIn,
+      error: error,
+    );
+  }
+}
