@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import 'package:pratmandu/features/auth/data/models/auth_hive_model.dart';
+import 'package:pratmandu/features/user/data/models/user_hive_model.dart';
 
 final hiveServiceProvider = Provider<HiveService>((ref) {
   return HiveService();
@@ -9,24 +8,15 @@ final hiveServiceProvider = Provider<HiveService>((ref) {
 
 class HiveService {
   Future<void> init() async {
-    // Initialize Hive
     await Hive.initFlutter();
 
-    // Register adapters
-    _registerAdapters();
-
-    // Open required boxes
-    await _openBoxes();
-  }
-
-  void _registerAdapters() {
-    if (!Hive.isAdapterRegistered(1)) {
-      Hive.registerAdapter(AuthHiveModelAdapter());
+    // Register ONLY User adapter
+    if (!Hive.isAdapterRegistered(UserHiveModelAdapter().typeId)) {
+      Hive.registerAdapter(UserHiveModelAdapter());
     }
-  }
 
-  Future<void> _openBoxes() async {
-    await Hive.openBox<AuthHiveModel>('usersBox');
+    // Open user box
+    await Hive.openBox<UserHiveModel>('usersBox');
   }
 
   Future<void> close() async {

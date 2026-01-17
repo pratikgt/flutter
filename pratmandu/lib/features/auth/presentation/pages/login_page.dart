@@ -40,6 +40,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       password: password,
     );
 
+    if (!mounted) return;
+
     setState(() => _isLoading = false);
 
     if (result == null) {
@@ -69,12 +71,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 50),
-
-              // LOGO
               Image.asset("assets/images/logo.png", height: 80),
-
               const SizedBox(height: 20),
-
               const Text(
                 "PRATMANDU",
                 style: TextStyle(
@@ -83,36 +81,26 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   color: Color(0xFFE53935),
                 ),
               ),
-
               const SizedBox(height: 40),
-
               const Text(
                 "Login",
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
               ),
-
               const SizedBox(height: 30),
-
-              // EMAIL
               _inputField(
                 controller: _emailController,
                 hintText: "Email address",
                 icon: Icons.email_outlined,
                 obscureText: false,
               ),
-
               const SizedBox(height: 16),
-
-              // PASSWORD
               _inputField(
                 controller: _passwordController,
                 hintText: "Password",
                 icon: Icons.lock_outline,
                 obscureText: true,
               ),
-
               const SizedBox(height: 8),
-
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -123,10 +111,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 20),
-
-              // LOGIN BUTTON
               SizedBox(
                 width: double.infinity,
                 height: 52,
@@ -153,10 +138,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         ),
                 ),
               ),
-
               const SizedBox(height: 30),
-
-              // SIGN UP
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

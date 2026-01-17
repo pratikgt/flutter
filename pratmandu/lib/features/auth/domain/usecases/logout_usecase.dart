@@ -2,23 +2,27 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pratmandu/core/error/failures.dart';
 import 'package:pratmandu/core/usecases/app_usecases.dart';
-import 'package:pratmandu/features/auth/data/repositories/auth_repository.dart';
 import 'package:pratmandu/features/auth/domain/repositories/auth_repository.dart';
+import 'package:pratmandu/features/auth/presentation/providers/auth_provider.dart';
 
-// Create Provider
+// Provider
 final logoutUsecaseProvider = Provider<LogoutUsecase>((ref) {
   final authRepository = ref.read(authRepositoryProvider);
-  return LogoutUsecase(authRepository: authRepository);
+  return LogoutUsecase(authRepository);
 });
 
-class LogoutUsecase implements UsecaseWithoutParms<bool> {
-  final IAuthRepository _authRepository;
+class LogoutUsecase implements UsecaseWithoutParms<Unit> {
+  final AuthRepository _authRepository;
 
-  LogoutUsecase({required IAuthRepository authRepository})
-      : _authRepository = authRepository;
+  LogoutUsecase(this._authRepository);
 
   @override
-  Future<Either<Failure, bool>> call() {
-    return _authRepository.logout();
+  Future<Either<Failure, Unit>> call() async {
+    try {
+      await _authRepository.logout();
+      return const Right(unit);
+    } catch (e) {
+      return Left(LocalDatabaseFailure(message: e.toString()));
+    }
   }
 }
