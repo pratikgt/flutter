@@ -14,9 +14,13 @@ dependencies:
   # UI
   cupertino_icons: ^1.0.8
   google_fonts: ^6.1.0
+  flutter_svg: ^2.0.10+1
 
   # State management (Riverpod 2 – NotifierProvider)
   flutter_riverpod: ^2.5.1
+
+  # Networking
+  http: ^1.2.0
 
   # Local database (Hive)
   hive: ^2.2.3
@@ -42,4 +46,3 @@ flutter:
 
   assets:
     - assets/images/
-    

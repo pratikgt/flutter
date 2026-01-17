@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:pratmandu/app.dart';
 import 'package:pratmandu/core/constants/hive_table_constant.dart';
-import 'package:pratmandu/features/auth/data/models/auth_hive_model.dart';
+import 'package:pratmandu/features/user/data/models/user_hive_model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,11 +14,11 @@ Future<void> main() async {
 
   // Register Hive adapters
   if (!Hive.isAdapterRegistered(HiveTableConstant.userTypeId)) {
-    Hive.registerAdapter(AuthHiveModelAdapter());
+    Hive.registerAdapter(UserHiveModelAdapter());
   }
 
   // Open required boxes
-  await Hive.openBox<AuthHiveModel>(HiveTableConstant.userTable);
+  await Hive.openBox<UserHiveModel>(HiveTableConstant.userTable);
 
   runApp(const ProviderScope(child: App()));
 }
