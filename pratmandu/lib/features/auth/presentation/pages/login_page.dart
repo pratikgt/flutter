@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pratmandu/features/auth/presentation/pages/signup_page.dart';
-import 'package:pratmandu/features/auth/presentation/providers/auth_provider.dart';
+import 'package:pratmandu/features/auth/presentation/providers/auth_viewmodel_provider.dart';
+import 'package:pratmandu/features/auth/presentation/state/auth_state.dart';
 import 'package:pratmandu/screens/home_screen.dart';
+
+import 'signup_page.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -14,7 +16,6 @@ class LoginPage extends ConsumerStatefulWidget {
 class _LoginPageState extends ConsumerState<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -23,45 +24,26 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     super.dispose();
   }
 
-  Future<void> _handleLogin() async {
-    final email = _emailController.text.trim();
-    final password = _passwordController.text;
-
-    if (email.isEmpty || password.isEmpty) {
-      _showSnack('Email and password are required');
-      return;
-    }
-
-    setState(() => _isLoading = true);
-
-    final repo = ref.read(authRepositoryProvider);
-    final result = await repo.login(
-      email: email,
-      password: password,
-    );
-
-    if (!mounted) return;
-
-    setState(() => _isLoading = false);
-
-    if (result == null) {
-      _showSnack("Invalid email or password");
-    } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const HomeScreen()),
-      );
-    }
-  }
-
-  void _showSnack(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authViewModelProvider);
+
+    // 🔔 Listen for login success (side-effect: navigation)
+    ref.listen<AuthState>(authViewModelProvider, (previous, next) {
+      if (next.isLoggedIn) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
+        );
+      }
+
+      if (next.error != null && previous?.error != next.error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(next.error!)),
+        );
+      }
+    });
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -100,30 +82,26 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 icon: Icons.lock_outline,
                 obscureText: true,
               ),
-              const SizedBox(height: 8),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Forgot password?",
-                    style: TextStyle(color: Color(0xFFE53935)),
-                  ),
-                ),
-              ),
               const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 height: 52,
                 child: ElevatedButton(
-                  onPressed: _isLoading ? null : _handleLogin,
+                  onPressed: authState.isLoading
+                      ? null
+                      : () {
+                          ref.read(authViewModelProvider.notifier).login(
+                                email: _emailController.text.trim(),
+                                password: _passwordController.text,
+                              );
+                        },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE53935),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(28),
                     ),
                   ),
-                  child: _isLoading
+                  child: authState.isLoading
                       ? const SizedBox(
                           height: 22,
                           width: 22,
